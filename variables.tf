@@ -1,5 +1,5 @@
 variable "project_id" {
-  default              = "tuxmaluco-enterprises"
+  default              = "add-id-projetc-gcp"
   type                 = string
   description          = "ID do projeto GCP"
 }
