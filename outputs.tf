@@ -8,7 +8,7 @@ output "vm_tux" {
   value       = google_compute_instance.vm_tux.name
 }
 
-output "allow_http" {
+output "allow_trafic" {
   description = "Tags that will be associated with instance(s)"
-  value       = google_compute_firewall.allow_http.name
+  value       = google_compute_firewall.allow_trafic.name
 }

@@ -23,13 +23,12 @@ resource "google_compute_firewall" "allow_trafic" {
   allow {
     ports               = ["80", "443", "22"]
     protocol            = "tcp"
-    allow {
-    protocol               = "icmp"
   }
+  allow {
+    protocol            = "icmp"
   }
   target_tags           = [var.allow_trafic.target_tags]
   priority              = 1000
-
 }
 #---------------------------------------------------
 #### VM
@@ -49,9 +48,9 @@ resource "google_compute_instance" "vm_tux" {
   }
   
 network_interface {
-    network             = "default"
+    network             = var.vm_tux.network
     network_ip          = ""
-    subnetwork          = ""
+    subnetwork          = var.vm_tux.subnetwork
     subnetwork_project  = ""
     access_config {
     nat_ip              = google_compute_address.elastic_ip_tux.address

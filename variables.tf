@@ -1,5 +1,5 @@
 variable "project_id" {
-  default              = "add-id-projetc-gcp"
+  default              = "seu-project-id"
   type                 = string
   description          = "ID do projeto GCP"
 }
@@ -17,13 +17,15 @@ variable "vm_tux" {
 default                = {
     count              = "1"
     name               = "vm-tux-terraform"
-    machine_type       = "e2-small"
+    machine_type       = "e2-medium"
     zone               = "us-west1-a"
     image              = "centos-cloud/centos-8"
     size               = "20"
     type               = "pd-standard"
+    network            = "tux-vpc"
+    subnetwork         = "a-public"
     network_tier       = "STANDARD"
-    tags               = "allow-http"
+    tags               = "allow-trafic"
   }
 
   type = object(
@@ -35,6 +37,8 @@ default                = {
     image              = string
     size               = string
     type               = string
+    network            = string
+    subnetwork         = string
     network_tier       = string
     tags               = string
    }
@@ -60,7 +64,7 @@ default                = {
 variable "allow_trafic" {
 default                = {
     name               = "allow-trafic-rule-terraform"
-    network            = "default"
+    network            = "tux-vpc"
     target_tags        = "allow-trafic"
   }
 
