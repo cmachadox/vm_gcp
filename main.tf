@@ -17,14 +17,17 @@ resource "google_compute_address" "elastic_ip_tux" {
 
 }
 #---------------------------------------------------
-resource "google_compute_firewall" "allow_http" {
-  name                  = var.allow_http.name
-  network               = var.allow_http.network
+resource "google_compute_firewall" "allow_trafic" {
+  name                  = var.allow_trafic.name
+  network               = var.allow_trafic.network
   allow {
-    ports               = ["80"]
+    ports               = ["80", "443", "22"]
     protocol            = "tcp"
+    allow {
+    protocol               = "icmp"
   }
-  target_tags           = [var.allow_http.target_tags]
+  }
+  target_tags           = [var.allow_trafic.target_tags]
   priority              = 1000
 
 }
