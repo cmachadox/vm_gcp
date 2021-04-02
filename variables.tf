@@ -57,11 +57,11 @@ default                = {
       )
 } 
 
-variable "allow_http" {
+variable "allow_trafic" {
 default                = {
-    name               = "allow-http-rule-terraform"
+    name               = "allow-trafic-rule-terraform"
     network            = "default"
-    target_tags        = "allow-http"
+    target_tags        = "allow-trafic"
   }
 
   type = object(
